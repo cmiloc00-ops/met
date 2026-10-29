@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff7f0">
+<meta name="description" content="Metikut: granizados, obleas, mini pancakes y mini donas. Pide fácil por WhatsApp.">
+<title>Metikut | Tu momento dulce</title>
+<style>
+:root{
+  --pink:#f02f7b;--pink-dark:#c91d5b;--orange:#ffad35;
+  --cream:#fff7f0;--ink:#3c211d;--muted:#826c65;
+  --line:#f5e6dc;--green:#20b968;--card:#fffdfb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:92px}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.top-shell{
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 20%,#fffdf9 0,#fff7f0 60%,#fff1e7 100%);
+  padding:28px 20px 24px;
+}
+.top-shell:before,.top-shell:after{
+  content:"";position:absolute;width:220px;height:115px;background:var(--pink);
+  border-radius:48% 52% 65% 35%;opacity:.95;pointer-events:none;
+}
+.top-shell:before{top:-72px;left:-75px;transform:rotate(-24deg)}
+.top-shell:after{top:-82px;right:-90px;background:#ffb23e;transform:rotate(25deg)}
+.brand-header{max-width:1180px;margin:auto;position:relative;z-index:1}
+.brand-row{
+  display:grid;grid-template-columns:1fr minmax(250px,360px) 1fr;
+  align-items:center;gap:20px;min-height:350px;
+}
+.brand-header{animation:header-enter .7s ease-out both}
+@keyframes header-enter{
+  from{opacity:0;transform:translateY(-14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.slogan{
+  font-family:"Trebuchet MS",system-ui,sans-serif;font-weight:800;
+  font-size:clamp(1.35rem,2.5vw,2.15rem);line-height:1.16;
+  text-align:center;letter-spacing:-.7px;transform:rotate(-3deg);
+}
+.slogan.left{color:var(--ink)}
+.slogan.right{color:var(--ink);transform:rotate(3deg)}
+.slogan .underline{display:block;width:78%;height:7px;border-radius:100%;background:var(--pink);margin:12px auto 0;transform:rotate(-3deg)}
+.slogan.right .underline{background:var(--orange);transform:rotate(3deg)}
+.brand-center{text-align:center}
+.logo-photo{
+  width:clamp(180px,22vw,250px);height:auto;aspect-ratio:3/4;
+  display:block;object-fit:cover;border-radius:28px;margin:0 auto 0;
+  border:7px solid #fff;outline:5px solid var(--pink);
+  box-shadow:0 12px 30px #b13c5b30;
+  animation:logo-float 4s ease-in-out 1s infinite;
+}
+@keyframes logo-float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+.brand-name{
+  font-family:"Trebuchet MS",system-ui,sans-serif;
+  font-size:clamp(3.2rem,7vw,5.2rem);font-weight:1000;
+  line-height:1;letter-spacing:-4px;margin:16px 0 8px;
+  text-shadow:0 3px 0 #f9c5d6;
+}
+.brand-underline{height:9px;width:60%;margin:auto;background:var(--pink);border-radius:50%;transform:rotate(-3deg)}
+.category-line{text-align:center;margin:20px 0 0;font-weight:850;letter-spacing:1.5px;font-size:.82rem}
+.category-line span{padding:0 7px;color:var(--pink)}
+main{max-width:1200px;margin:auto;padding:28px 20px 42px}
+.menu-heading{text-align:center;margin:0 auto 20px}
+.menu-heading .kicker{font-size:.76rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--pink-dark)}
+.menu-heading h2{font-size:clamp(1.8rem,4vw,2.45rem);letter-spacing:-1px;margin:7px 0}
+.menu-heading p{color:var(--muted);margin:0}
+.tabs{display:flex;gap:10px;overflow-x:auto;padding:10px 0 22px;scrollbar-width:thin}
+.tab{
+  flex:0 0 auto;border:1px solid transparent;background:#ffede4;color:var(--ink);
+  border-radius:999px;padding:12px 20px;font-weight:850;white-space:nowrap;
+  transition:transform .18s,background .18s;
+}
+.tab:hover{transform:translateY(-2px)}
+.tab.active{background:var(--pink);color:white;box-shadow:0 7px 16px #f02f7b30}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.product-card{
+  position:relative;overflow:hidden;min-width:0;display:flex;flex-direction:column;
+  border-radius:22px;background:var(--card);border:1px solid #f7e7de;
+  box-shadow:0 5px 17px #6c34200b;transition:transform .2s,box-shadow .2s;
+}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 25px #6c342018}
+.product-visual{height:185px;position:relative;display:grid;place-items:center;background:linear-gradient(145deg,#ffe1e9,#fff1e4)}
+.product-card:nth-child(3n+2) .product-visual{background:linear-gradient(145deg,#ffedc8,#fff4e7)}
+.product-card:nth-child(4n) .product-visual{background:linear-gradient(145deg,#f0e4ff,#fff0f5)}
+.product-card:nth-child(5n) .product-visual{background:linear-gradient(145deg,#ddf4e5,#fff6eb)}
+.product-image{
+  width:144px;height:144px;border-radius:50%;object-fit:cover;
+  border:5px solid #fff;box-shadow:0 6px 18px #74372a20;
+}
+.emoji-fallback{display:none;font-size:4rem}
+.category-badge{
+  position:absolute;left:13px;bottom:10px;background:var(--pink);color:white;
+  padding:5px 10px;border-radius:99px;font-size:.66rem;font-weight:900;letter-spacing:.4px;
+  text-transform:uppercase;
+}
+.product-card:nth-child(even) .category-badge{background:var(--orange);color:#42271d}
+.product-body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.product-body h3{margin:0;font-size:1.03rem;line-height:1.2}
+.product-body p{margin:0;color:var(--muted);font-size:.84rem;line-height:1.45;flex:1}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:7px}
+.price{font-size:1.12rem;font-weight:950;color:var(--pink-dark);white-space:nowrap}
+.add-btn{border:0;border-radius:12px;padding:10px 12px;background:var(--pink);color:#fff;font-size:.82rem;font-weight:900}
+.qty{display:flex;align-items:center;gap:9px;font-weight:900}
+.qty button{height:31px;width:31px;border-radius:50%;border:1.5px solid var(--pink);color:var(--pink-dark);background:white;font-size:1.1rem;font-weight:900}
+.order-panel{
+  margin-top:32px;padding:25px 28px;border-radius:26px;
+  background:linear-gradient(115deg,#ffe1e9,#fff0df 75%);display:grid;
+  grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
+}
+.wa-icon{height:66px;width:66px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:white;font-size:2rem;font-weight:900}
+.order-panel h2{margin:0 0 6px;font-size:1.5rem}
+.order-panel p{margin:0;color:#75534e;line-height:1.5}
+.order-cta{border:0;background:var(--green);color:#fff;font-weight:900;padding:14px 18px;border-radius:14px;white-space:nowrap}
+.benefits{display:flex;justify-content:center;gap:0;margin:24px auto 0;max-width:800px}
+.benefit{flex:1;text-align:center;padding:8px 12px;color:var(--muted);font-size:.85rem}
+.benefit+ .benefit{border-left:1px solid #d8b8a9}
+.benefit strong{display:block;color:var(--pink);font-size:1.2rem;margin-bottom:5px}
+footer{text-align:center;padding:25px 16px 32px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;line-height:1.9}
+footer strong{color:var(--pink-dark)}
+.cart-bar{display:none;position:fixed;z-index:10;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.cart-bar.show{display:block}
+.cart-open{display:block;width:100%;max-width:1100px;margin:auto;border:0;border-radius:15px;padding:15px;background:var(--green);color:#fff;font-weight:950;font-size:1rem}
+.modal{position:fixed;inset:0;z-index:30;background:#21151399;display:none;align-items:flex-end;justify-content:center}
+.modal.show{display:flex}
+.sheet{width:100%;max-width:570px;max-height:91dvh;overflow:auto;background:#fff;border-radius:25px 25px 0 0;padding:23px 20px calc(22px + env(safe-area-inset-bottom));color:var(--ink)}
+.sheet h2{margin:0 0 5px}.sheet-sub{margin:0 0 16px;color:var(--muted);font-size:.9rem}
+.cart-line{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.cart-line small{display:block;color:var(--muted);margin-top:4px}
+.cart-line .qty{margin-top:8px}
+.total{display:flex;justify-content:space-between;margin:18px 0;font-size:1.2rem;font-weight:950}
+.field{margin-top:13px}.field label{display:block;font-size:.86rem;font-weight:800;margin-bottom:6px}
+.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fffaf7;color:var(--ink)}
+.field textarea{resize:vertical}
+.send{width:100%;margin-top:17px;padding:15px;background:var(--green);color:white;border:0;border-radius:13px;font-weight:950}
+.close{width:100%;padding:12px;background:transparent;border:0;color:var(--muted);margin-top:4px}
+@media(max-width:980px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.brand-row{grid-template-columns:1fr minmax(220px,300px) 1fr;gap:12px}.slogan{font-size:1.35rem}}
+@media(max-width:700px){
+  .top-shell{padding:22px 14px 20px}
+  .brand-row{grid-template-columns:1fr 1fr;gap:13px;min-height:0}
+  .brand-center{grid-column:1/-1;grid-row:1}
+  .logo-photo{width:170px}
+  .brand-name{font-size:3.6rem;letter-spacing:-3px;margin:14px 0 7px}
+  .slogan{font-size:1.2rem;padding:0 5px}
+  .slogan .underline{height:5px;margin-top:8px}
+  .category-line{font-size:.7rem;line-height:1.9;letter-spacing:.7px}
+  main{padding:25px 13px 30px}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .product-visual{height:155px}
+  .product-image{width:120px;height:120px}
+  .product-body{padding:12px}
+  .product-body h3{font-size:.95rem}
+  .product-body p{font-size:.79rem}
+  .product-bottom{align-items:flex-start;flex-direction:column}
+  .product-bottom .qty{flex-direction:row}
+  .add-btn{width:100%}
+  .order-panel{grid-template-columns:auto 1fr;gap:13px;padding:19px}
+  .wa-icon{width:52px;height:52px;font-size:1.5rem}
+  .order-panel h2{font-size:1.15rem}
+  .order-panel p{font-size:.86rem}
+  .order-cta{grid-column:1/-1;width:100%}
+  .benefit{padding:8px 5px;font-size:.75rem}
+}
+@media(max-width:390px){
+  .slogan{font-size:1.02rem}
+  .brand-name{font-size:3rem}
+  .logo-photo{width:150px}
+  .product-visual{height:132px}
+  .product-image{width:105px;height:105px}
+  .price{font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .brand-header,.logo-photo{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top-shell">
+  <div class="brand-header">
+    <div class="brand-row">
+      <div class="slogan left">Tu momento<br>dulce está aquí<span class="underline"></span></div>
+      <div class="brand-center">
+        <img class="logo-photo"
+          src="img/WhatsApp Image 2026-10-28 at 10.25.13 PM.jpeg"
+          alt="Persona disfrutando una bebida refrescante"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=85'">
+        <div class="brand-name">Metikut</div>
+        <div class="brand-underline"></div>
+      </div>
+      <div class="slogan right">Pequeños antojos,<br>grandes sonrisas<span class="underline"></span></div>
+    </div>
+    <div class="category-line">GRANIZADOS <span>•</span> OBLEAS <span>•</span> MINI PANCAKES <span>•</span> MINI DONAS</div>
+  </div>
+</header>
+
+<main id="menu">
+  <section class="menu-heading">
+    <div class="kicker">Hecho para disfrutar</div>
+    <h2>Elige tu antojo favorito 💗</h2>
+    <p>Un menú rápido, rico y fácil de pedir.</p>
+  </section>
+  <nav class="tabs" id="tabs" aria-label="Filtrar productos"></nav>
+  <section class="product-grid" id="grid" aria-label="Productos"></section>
+
+  <section class="order-panel">
+    <div class="wa-icon" aria-hidden="true">◉</div>
+    <div>
+      <h2>Haz tu pedido fácil y rápido</h2>
+      <p>Arma tu pedido y continúa por WhatsApp para confirmar disponibilidad y entrega.</p>
+    </div>
+    <button class="order-cta" id="panelOrder">Pedir por WhatsApp ↗</button>
+  </section>
+  <section class="benefits" aria-label="Beneficios">
+    <div class="benefit"><strong>◷</strong>Servicio rápido</div>
+    <div class="benefit"><strong>♡</strong>Preparado con cariño</div>
+    <div class="benefit"><strong>☺</strong>La mejor atención</div>
+  </section>
+</main>
+
+<footer>
+  <strong>Metikut</strong> · Granizados · Obleas · Mini pancakes · Mini donas<br>
+  Pedidos por WhatsApp: <strong>320 582 0957</strong><br>
+</footer>
+
+<div class="cart-bar" id="bar"><button class="cart-open" id="openCart">Ver pedido</button></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="sheet">
+    <h2 id="cartTitle">🛍️ Tu pedido</h2>
+    <p class="sheet-sub">Revisa los productos antes de continuar.</p>
+    <div id="lines"></div>
+    <div class="total"><span>Total</span><span id="total">$0</span></div>
+    <div class="field"><label for="name">Tu nombre *</label><input id="name" autocomplete="name" placeholder="¿Cómo te llamas?"></div>
+    <div class="field"><label for="address">Dirección o forma de entrega *</label><input id="address" autocomplete="street-address" placeholder="Dirección o recoger en el local"></div>
+    <div class="field"><label for="note">Notas adicionales (opcional)</label><textarea id="note" rows="2" placeholder="Toppings, instrucciones, etc."></textarea></div>
+    <button class="send" id="send">Enviar pedido por WhatsApp</button>
+    <button class="close" id="close">Seguir mirando el menú</button>
+  </div>
+</div>
+
+<script>
+const WHATSAPP = "573205820957"; // Cambia este número si es necesario.
+
+const PRODUCTS = [
+ {id:1,cat:"Granizados",name:"Granizado de fresa",desc:"Hielo frappé con fresa y leche condensada.",price:7000,emoji:"🍓",img:"img/WhatsApp Image 2026-10-28 at 10.06.36 PM.jpeg"},
+ {id:2,cat:"Granizados",name:"Granizado de mango",desc:"Mango maduro, hielo y un toque de limón.",price:7000,emoji:"🥭",img:"img/WhatsApp Image 2026-10-28 at 10.24.47 PM.jpeg"},
+ {id:3,cat:"Granizados",name:"Granizado de coco",desc:"Coco, leche y hielo.",price:8000,emoji:"🥥",img:"img/WhatsApp Image 2026-10-28 at 10.06.36 PM (1).jpeg"},
+ {id:4,cat:"Granizados",name:"Limonada cerezada",desc:"Refrescante, con cerezas y hielo.",price:6500,emoji:"🍒",img:"https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=600&q=80"},
+ {id:5,cat:"Obleas",name:"Oblea clásica",desc:"Arequipe y coco rayado. La de siempre.",price:4000,emoji:"🧇",img:"img/Captura de pantalla 2026-10-29 001058.png"},
+ {id:6,cat:"Obleas",name:"Oblea de salsa de mora",desc:"Salsa de mora, queso y arequipe.",price:5500,emoji:"🍓",img:"img/WhatsApp Image 2026-10-28 at 10.18.00 PM.jpeg"},
+ {id:8,cat:"Mini Pancakes",name:"Mini pancakes clásicos",desc:"Esponjosos con miel o arequipe.",price:6000,emoji:"🥞",img:"https://images.unsplash.com/photo-1575853121743-60c24f0a7502?auto=format&fit=crop&w=600&q=80"},
+ {id:9,cat:"Mini Pancakes",name:"Mini pancakes de chocolate",desc:"Con salsa de chocolate y chispas.",price:10000,emoji:"🍫",img:"https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=600&q=80"},
+ {id:10,cat:"Mini Pancakes",name:"Mini pancakes frutales",desc:"Con fresas y acompañamientos.",price:11000,emoji:"🍓",img:"img/WhatsApp Image 2026-10-28 at 10.19.47 PM.jpeg"},
+ {id:11,cat:"Mini Donas",name:"Mini donas azucaradas",desc:"Suaves y esponjosas, con oreo.",price:7000,emoji:"🍩",img:"img/WhatsApp Image 2026-10-28 at 10.18.38 PM.jpeg"},
+ {id:12,cat:"Mini Donas",name:"Mini donas de chocolate",desc:"Con cobertura de chocolate.",price:9000,emoji:"🍫",img:"https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80"},
+];
+
+const $ = id => document.getElementById(id);
+const money = n => "$" + n.toLocaleString("es-CO");
+const categories = ["Todos", ...new Set(PRODUCTS.map(p=>p.cat))];
+let current = "Todos", cart = {};
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function selectedItems(){return PRODUCTS.filter(p=>(cart[p.id]||0)>0);}
+function total(){return selectedItems().reduce((sum,p)=>sum+p.price*cart[p.id],0);}
+
+function renderTabs(){
+  $("tabs").innerHTML=categories.map(c=>`<button class="tab ${c===current?"active":""}" data-cat="${esc(c)}" aria-pressed="${c===current}">${c==="Todos"?"✧ ":""}${esc(c)}</button>`).join("");
+}
+function renderGrid(){
+  const list=PRODUCTS.filter(p=>current==="Todos"||p.cat===current);
+  $("grid").innerHTML=list.map(p=>{
+    const q=cart[p.id]||0;
+    return `<article class="product-card">
+      <div class="product-visual">
+        <img class="product-image" src="${p.img}" alt="${esc(p.name)}" loading="lazy"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="emoji-fallback">${p.emoji}</span>
+        <span class="category-badge">${esc(p.cat)}</span>
+      </div>
+      <div class="product-body">
+        <h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
+        <div class="product-bottom"><span class="price">${money(p.price)}</span>
+          ${q?`<div class="qty"><button data-delta="-1" data-id="${p.id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-delta="1" data-id="${p.id}" aria-label="Agregar uno">+</button></div>`:`<button class="add-btn" data-delta="1" data-id="${p.id}">+ Agregar</button>`}
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+}
+function updateBar(){
+  const count=selectedItems().reduce((sum,p)=>sum+cart[p.id],0);
+  $("bar").classList.toggle("show",count>0);
+  $("openCart").textContent=`🛒 Ver pedido (${count}) · ${money(total())}`;
+}
+function change(id,delta){
+  cart[id]=Math.max(0,(cart[id]||0)+delta);
+  if(!cart[id])delete cart[id];
+  renderGrid();updateBar();
+  if($("modal").classList.contains("show"))renderCart();
+}
+function renderCart(){
+  const list=selectedItems();
+  if(!list.length){$("modal").classList.remove("show");return;}
+  $("lines").innerHTML=list.map(p=>`<div class="cart-line"><div><strong>${cart[p.id]} × ${esc(p.name)}</strong><small>${money(p.price)} por unidad</small><div class="qty"><button data-delta="-1" data-id="${p.id}">−</button><span>${cart[p.id]}</span><button data-delta="1" data-id="${p.id}">+</button></div></div><strong>${money(p.price*cart[p.id])}</strong></div>`).join("");
+  $("total").textContent=money(total());
+}
+function openCart(){if(!selectedItems().length){document.querySelector("#menu").scrollIntoView({behavior:"smooth"});return;}renderCart();$("modal").classList.add("show");}
+$("tabs").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;current=b.dataset.cat;renderTabs();renderGrid();});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-delta]");if(b)change(Number(b.dataset.id),Number(b.dataset.delta));});
+$("openCart").addEventListener("click",openCart);
+$("panelOrder").addEventListener("click",openCart);
+$("close").addEventListener("click",()=>$("modal").classList.remove("show"));
+$("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").classList.remove("show");});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("modal").classList.remove("show");});
+$("send").addEventListener("click",()=>{
+  if(!selectedItems().length)return;
+  const name=$("name").value.trim(),address=$("address").value.trim(),note=$("note").value.trim();
+  if(!name||!address){alert("Escribe tu nombre y la dirección o forma de entrega.");return;}
+  let msg="¡Hola Metikut! 👋 Quiero hacer este pedido:\n\n";
+  selectedItems().forEach(p=>msg+=`• ${cart[p.id]} × ${p.name} — ${money(p.price*cart[p.id])}\n`);
+  msg+=`\n*Total: ${money(total())}*\nNombre: ${name}\nEntrega: ${address}`;
+  if(note)msg+=`\nNotas: ${note}`;
+  msg+="\n\n¿Me confirman disponibilidad y valor del domicilio?";
+  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank","noopener,noreferrer");
+});
+renderTabs();renderGrid();updateBar();
+</script>
+</body>
+</html>
